@@ -121,7 +121,4 @@ Reg_Add,0x1,%reg%\Software\Microsoft\CTF\Assemblies\0x00000411\{34745C63-B2F0-47
 Reg_Add,0x4,%reg%\Software\Microsoft\CTF\Assemblies\0x00000411\{34745C63-B2F0-4784-8B67-5E12C8701A31},KeyboardLayout,04110411,NOWARN
 Hive_Unload,Default
 // Startup
-Hive_Load,Default
-Reg_Add,0x2,%reg%\Software\Microsoft\Windows\CurrentVersion\RunOnce,CTFMON,%SystemDrive%\Windows\System32\CTFMON.EXE,NOWARN
-Hive_UnLoad,Default
-
+AddAutoRun,CTFMON,#$pSystemDrive#$p\Windows\System32\CTFMON.EXE,,4
