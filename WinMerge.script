@@ -1,0 +1,28 @@
+[main]
+Title=WinMerge
+Description=WinMerge for Win7PE SE
+Selected=True
+Level=5
+
+[variables]
+%ProgramTitle%=WinMerge
+%ProgramEXE%=WinMergeU.exe
+%ProgramFolder%=WinMerge
+
+[process]
+// Set Variable
+Set,%URL%,%pTextBox1%
+Set,%Extras%,%pTextBox2%
+// Get File and Extract (File include Top Directory)
+If,NotExistDir,%Extras%\%ProgramFolder%,Begin
+WebGetIfNotExist,%URL%,%Extras%\__CACHE__\%ProgramFolder%.zip
+Unpack,%Extras%\__CACHE__\%ProgramFolder%.zip,Unzip,%Extras%
+End
+// Install Program
+RunfromRAM,True
+CopyProgram,%Extras%\%ProgramFolder%
+Add_Shortcut,StartMenu,Extras
+
+[Interface]
+pTextBox1="Download URL:",1,0,22,83,512,21,http://www.geocities.co.jp/SiliconValley-SanJose/8165/winmerge-2.12.4-jp-24-exe.zip
+pTextBox2="Extras Directory:",1,0,22,132,512,21,%GlobalTemplates%\Extras

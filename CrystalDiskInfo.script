@@ -1,0 +1,28 @@
+[main]
+Title=CrystalDiskInfo
+Description=CrystalDiskInfo for Win7PE SE
+Selected=True
+Level=5
+
+[variables]
+%ProgramTitle%=CrystalDiskInfo
+%ProgramEXE%=DiskInfo.exe
+%ProgramFolder%=CrystalDiskInfo
+
+[process]
+// Set Variable
+Set,%URL%,%pTextBox1%
+Set,%Extras%,%pTextBox2%
+// Get File and Extract
+If,NotExistDir,%Extras%\%ProgramFolder%,Begin
+WebGetIfNotExist,%URL%,%Extras%\__CACHE__\%ProgramFolder%.zip
+Unpack,%Extras%\__CACHE__\%ProgramFolder%.zip,Unzip,%Extras%\%ProgramFolder%
+End
+// Install Program
+RunfromRAM,True
+CopyProgram,%Extras%\%ProgramFolder%
+Add_Shortcut,StartMenu,Extras
+
+[Interface]
+pTextBox1="Download URL:",1,0,22,83,512,21,http://jaist.dl.sourceforge.jp/crystaldiskinfo/51981/CrystalDiskInfo4_0_2a.zip
+pTextBox2="Extras Directory:",1,0,22,132,512,21,%GlobalTemplates%\Extras

@@ -1,0 +1,28 @@
+[main]
+Title=PuTTY
+Description=PuTTY for Win7PE SE
+Selected=True
+Level=5
+
+[variables]
+%ProgramTitle%=PuTTY
+%ProgramEXE%=PUTTY.EXE
+%ProgramFolder%=PuTTY
+
+[process]
+// Set Variable
+Set,%URL%,%pTextBox1%
+Set,%Extras%,%pTextBox2%
+// Get File and Extract
+If,NotExistDir,%Extras%\%ProgramFolder%,Begin
+WebGetIfNotExist,%URL%,%Extras%\__CACHE__\%ProgramFolder%.zip
+Unpack,%Extras%\__CACHE__\%ProgramFolder%.zip,Unzip,%Extras%\%ProgramFolder%
+End
+// Install Program
+RunfromRAM,True
+CopyProgram,%Extras%\%ProgramFolder%
+Add_Shortcut,StartMenu,Extras
+
+[Interface]
+pTextBox1="Download URL:",1,0,22,83,512,21,http://the.earth.li/~sgtatham/putty/latest/x86/putty.zip
+pTextBox2="Extras Directory:",1,0,22,132,512,21,%GlobalTemplates%\Extras
