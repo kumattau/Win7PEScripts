@@ -6,9 +6,8 @@ Selected=True
 Download_Level=0
 
 [Interface]
-pBevel1=pBevel1,1,12,11,56,320,80
-pFileBox1=C:\Windows\System32\,1,13,31,96,280,30,dir
-pTextLabel1="Windows System Directory (System32 or SysWOW64)",1,1,31,76,280,20,8,Normal
+pFileBox1=C:\Windows\System32\,1,13,25,96,469,30,dir
+pTextLabel1="Windows System Directory (System32 or SysWOW64):",1,1,31,76,280,20,8,Normal
 
 [Variables]
 
@@ -122,3 +121,4 @@ Reg_Add,0x4,%reg%\Software\Microsoft\CTF\Assemblies\0x00000411\{34745C63-B2F0-47
 Hive_Unload,Default
 // Startup
 AddAutoRun,CTFMON,#$pSystemDrive#$p\Windows\System32\CTFMON.EXE,,4
+
