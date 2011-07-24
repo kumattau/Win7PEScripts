@@ -1,0 +1,29 @@
+[main]
+Title=ChromePlus
+Description=ChromePlus for Win7PE SE
+Selected=False
+Level=5
+
+[variables]
+%ProgramTitle%=ChromePlus
+%ProgramEXE%=chrome.exe
+%ProgramFolder%=ChromePlus
+
+[process]
+// Set Variable
+Set,%URL%,%pTextBox1%
+Set,%Extras%,%pTextBox2%
+Set,%AppLocal%,Windows\System32\config\systemprofile\AppData\Local
+// Get File and Extract
+If,NotExistDir,%Extras%\%ProgramFolder%,Begin
+WebGetIfNotExist,%URL%,%Extras%\__CACHE__\%ProgramFolder%.zip
+Unpack,%Extras%\__CACHE__\%ProgramFolder%.zip,Unzip,%Extras%\%ProgramFolder%
+End
+// Install Program
+CopyProgram,%Extras%\%ProgramFolder%,%TargetDir%\%AppLocal%\%ProgramFolder%
+Add_Shortcut,StartMenu,Extras,#$pSystemDrive#$p\%AppLocal%\%ProgramFolder%\%ProgramEXE%
+
+[Interface]
+pTextBox1="Download URL:",1,0,22,83,512,21,http://www.cpbrowser.info/update/ChromePlus1.6.2.0.zip
+pTextBox2="Extras Directory:",1,0,22,132,512,21,%GlobalTemplates%\Extras
+
