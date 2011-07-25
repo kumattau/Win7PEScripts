@@ -1,0 +1,23 @@
+[main]
+Title=Paragon Partition Manager
+Description=Paragon Partition Manager for Win7PE SE
+Selected=True
+Level=5
+
+[variables]
+%ProgramTitle%=Paragon Partition Manager
+%ProgramEXE%=program\launcher.exe
+%ProgramFolder%=Paragon Partition Manager
+
+[process]
+// Get File and Extract
+RunfromRAM,True
+CopyProgram,%PPMInstallFolder%
+FileCopy,C:\Windows\System32\qtp-mt334.dll,%Target_Prog%\%ProgramFolder%\program
+FileCopy,C:\Windows\System32\prgiso.dll,%Target_Prog%\%ProgramFolder%\program
+FileDelete,%Target_Prog%\%ProgramFolder%\iso\bootcd.iso
+Add_Shortcut,StartMenu,Extras,,,,,%PE_Programs%\%ProgramFolder%\program\launcher.ico
+
+[Interface]
+PPMInstallFolder="C:\Program Files\Paragon Software\Partition Manager 11 SE Personal\",1,13,25,96,469,30,dir
+pTextLabel1="Paragon Partition Manager Install Folder:",1,1,31,76,280,20,8,Normal

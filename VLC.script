@@ -1,0 +1,68 @@
+[main]
+Title=VLC
+Description=VLC for Win7PE SE
+Selected=True
+Level=5
+
+[variables]
+%ProgramTitle%=VLC
+%ProgramEXE%=vlc.exe
+%ProgramFolder%=VLC
+
+[process]
+// Get File and Extract
+If,NotExistDir,%ExtrasFolder%\%ProgramFolder%,Begin
+WebGetIfNotExist,%DownloadURL%,%ExtrasFolder%\__CACHE__\%ProgramFolder%.zip
+Unpack,%ExtrasFolder%\__CACHE__\%ProgramFolder%.zip,Unzip,%ExtrasFolder%
+// TODO: Ad-hoc Rename
+FileRename,%ExtrasFolder%\vlc-1.1.11,%ExtrasFolder%\%ProgramFolder%
+End
+// Install Program
+If,%IsRunFromRAM%,Equal,True,RunfromRAM,True
+CopyProgram,%ExtrasFolder%\%ProgramFolder%
+Add_Shortcut,StartMenu,Extras
+// Associate File
+Hive_Load,HKU
+If,%IsAssocMEDIA%,Equal,True,Begin
+Add_Asso,mpg
+Add_Asso,asf
+Add_Asso,wmv
+Add_Asso,avi
+Add_Asso,divx
+Add_Asso,mp4
+Add_Asso,ogm
+Add_Asso,mkv
+Add_Asso,m1v
+Add_Asso,m2v
+Add_Asso,dv
+Add_Asso,gxf
+Add_Asso,m2ts
+Add_Asso,mov
+Add_Asso,3gp
+Add_Asso,wma
+Add_Asso,mp3
+Add_Asso,mp2
+Add_Asso,wav
+Add_Asso,ogg
+Add_Asso,flac
+Add_Asso,mka
+Add_Asso,aac
+Add_Asso,ac3
+Add_Asso,aifc
+Add_Asso,spx
+Add_Asso,mid
+Add_Asso,m4v
+Add_Asso,rmvb
+Add_Asso,rm
+Add_Asso,mpeg
+Add_Asso,ts
+Add_Asso,flv
+Add_Asso,wmx
+End
+Hive_Unload,HKU
+
+[Interface]
+IsRunFromRAM="Run from RAM (Install to Program Files)",1,3,22,36,223,18,True
+DownloadURL="Download URL:",1,0,22,83,512,21,http://cdnetworks-kr-1.dl.sourceforge.net/project/vlc/1.1.11/win32/vlc-1.1.11-win32.zip
+ExtrasFolder="Extras Folder:",1,0,22,132,512,21,%GlobalTemplates%\Extras
+IsAssocMEDIA="Associate MEDIA File",1,3,22,180,200,18,True

@@ -6,14 +6,12 @@ Selected=True
 Download_Level=0
 
 [Interface]
-pFileBox1=C:\Windows\System32\,1,13,25,96,469,30,dir
-pTextLabel1="Windows System Directory (System32 or SysWOW64):",1,1,31,76,280,20,8,Normal
+WinSysFolder=C:\Windows\System32\,1,13,25,96,469,30,dir
+pTextLabel1="Windows System Folder (System32 or SysWOW64):",1,1,31,76,280,20,8,Normal
 
 [Variables]
 
 [Process]
-// Set Variable
-Set,%WinSysDir%,%pFileBox1%
 // File Copy
 DirMake,%TargetDir%\Windows\IME
 DirMake,%TargetDir%\Windows\IME\IMEJP10
@@ -23,18 +21,18 @@ DirMake,%TargetDir%\Windows\System32\IME\IMEJP10
 DirMake,%TargetDir%\Windows\System32\IME\shared
 FileCopy,C:\Windows\IME\IMEJP10\DICTS\IMJPST.DIC,%TargetDir%\Windows\IME\IMEJP10\DICTS\IMJPST.DIC
 FileCopy,C:\Windows\IME\IMEJP10\DICTS\IMJPGN.GRM,%TargetDir%\Windows\IME\IMEJP10\DICTS\IMJPGN.GRM
-FileCopy,%WinSysDir%\CTFMON.EXE,%TargetDir%\Windows\System32\CTFMON.EXE
-FileCopy,%WinSysDir%\MSUTB.DLL,%TargetDir%\Windows\System32\MSUTB.DLL
-FileCopy,%WinSysDir%\MsCtfMonitor.DLL,%TargetDir%\Windows\System32\MsCtfMonitor.DLL
-FileCopy,%WinSysDir%\IMJP10.IME,%TargetDir%\Windows\System32\IMJP10.IME
-FileCopy,%WinSysDir%\IMJP10K.DLL,%TargetDir%\Windows\System32\IMJP10K.DLL
-FileCopy,%WinSysDir%\IME\IMEJP10\IMJPAPI.DLL,%TargetDir%\Windows\System32\IME\IMEJP10\IMJPAPI.DLL
-FileCopy,%WinSysDir%\IME\IMEJP10\IMJPTIP.DLL,%TargetDir%\Windows\System32\IME\IMEJP10\IMJPTIP.DLL
-FileCopy,%WinSysDir%\IME\IMEJP10\IMJPMGR.EXE,%TargetDir%\Windows\System32\IME\IMEJP10\IMJPMGR.EXE
-FileCopy,%WinSysDir%\IME\shared\IMEAPIS.DLL,%TargetDir%\Windows\System32\IME\shared\IMEAPIS.DLL
-FileCopy,%WinSysDir%\IME\shared\IMETIP.DLL,%TargetDir%\Windows\System32\IME\shared\IMETIP.DLL
-FileCopy,%WinSysDir%\IME\shared\IMJKAPI.DLL,%TargetDir%\Windows\System32\IME\shared\IMJKAPI.DLL
-FileCopy,%WinSysDir%\IME\shared\MSCAND20.DLL,%TargetDir%\Windows\System32\IME\shared\MSCAND20.DLL
+FileCopy,%WinSysFolder%\CTFMON.EXE,%TargetDir%\Windows\System32\CTFMON.EXE
+FileCopy,%WinSysFolder%\MSUTB.DLL,%TargetDir%\Windows\System32\MSUTB.DLL
+FileCopy,%WinSysFolder%\MsCtfMonitor.DLL,%TargetDir%\Windows\System32\MsCtfMonitor.DLL
+FileCopy,%WinSysFolder%\IMJP10.IME,%TargetDir%\Windows\System32\IMJP10.IME
+FileCopy,%WinSysFolder%\IMJP10K.DLL,%TargetDir%\Windows\System32\IMJP10K.DLL
+FileCopy,%WinSysFolder%\IME\IMEJP10\IMJPAPI.DLL,%TargetDir%\Windows\System32\IME\IMEJP10\IMJPAPI.DLL
+FileCopy,%WinSysFolder%\IME\IMEJP10\IMJPTIP.DLL,%TargetDir%\Windows\System32\IME\IMEJP10\IMJPTIP.DLL
+FileCopy,%WinSysFolder%\IME\IMEJP10\IMJPMGR.EXE,%TargetDir%\Windows\System32\IME\IMEJP10\IMJPMGR.EXE
+FileCopy,%WinSysFolder%\IME\shared\IMEAPIS.DLL,%TargetDir%\Windows\System32\IME\shared\IMEAPIS.DLL
+FileCopy,%WinSysFolder%\IME\shared\IMETIP.DLL,%TargetDir%\Windows\System32\IME\shared\IMETIP.DLL
+FileCopy,%WinSysFolder%\IME\shared\IMJKAPI.DLL,%TargetDir%\Windows\System32\IME\shared\IMJKAPI.DLL
+FileCopy,%WinSysFolder%\IME\shared\MSCAND20.DLL,%TargetDir%\Windows\System32\IME\shared\MSCAND20.DLL
 // REGSVR32
 Hive_Load,Software
 Reg_Add,0x1,%reg%\Classes\AppID\imeapi.DLL,AppID,{F106FC4B-A60F-4B3E-9F38-C6FC869C2E47},NOWARN

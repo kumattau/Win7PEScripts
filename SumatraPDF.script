@@ -10,19 +10,22 @@ Level=5
 %ProgramFolder%=SumatraPDF
 
 [process]
-// Set Variable
-Set,%URL%,%pTextBox1%
-Set,%Extras%,%pTextBox2%
 // Get File and Extract
-If,NotExistDir,%Extras%\%ProgramFolder%,Begin
-WebGetIfNotExist,%URL%,%Extras%\__CACHE__\%ProgramFolder%.zip
-Unpack,%Extras%\__CACHE__\%ProgramFolder%.zip,Unzip,%Extras%\%ProgramFolder%
+If,NotExistDir,%ExtrasFolder%\%ProgramFolder%,Begin
+WebGetIfNotExist,%DownloadURL%,%ExtrasFolder%\__CACHE__\%ProgramFolder%.zip
+Unpack,%ExtrasFolder%\__CACHE__\%ProgramFolder%.zip,Unzip,%ExtrasFolder%\%ProgramFolder%
 End
 // Install Program
-RunfromRAM,True
-CopyProgram,%Extras%\%ProgramFolder%
+If,%IsRunFromRAM%,Equal,True,RunfromRAM,True
+CopyProgram,%ExtrasFolder%\%ProgramFolder%
 Add_Shortcut,StartMenu,Extras
+// Associate File
+Hive_Load,HKU
+If,%IsAssocPDF%,Equal,True,Add_Asso,pdf
+Hive_Unload,HKU
 
 [Interface]
-pTextBox1="Download URL:",1,0,22,83,512,21,https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.7.zip
-pTextBox2="Extras Directory:",1,0,22,132,512,21,%GlobalTemplates%\Extras
+IsRunFromRAM="Run from RAM (Install to Program Files)",1,3,22,36,223,18,True
+DownloadURL="Download URL:",1,0,22,83,512,21,https://kjkpub.s3.amazonaws.com/sumatrapdf/rel/SumatraPDF-1.7.zip
+ExtrasFolder="Extras Folder:",1,0,22,132,512,21,%GlobalTemplates%\Extras
+IsAssocPDF="Associate PDF File",1,3,22,180,200,18,True
